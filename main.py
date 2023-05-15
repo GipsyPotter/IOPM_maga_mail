@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def importData():
-    Data = pd.read_csv('[Pre-Order] Tạp Chí 10PM (Responses) - Form responses 1.csv', dtype=str)
+    Data = pd.read_csv('C:\Desktop\[Pre-Order] Tạp Chí 10PM (Responses) - Form responses 1.csv', dtype=str)
     Dataframe = pd.DataFrame(Data)
     Dataframe = Dataframe.drop(['Timestamp'], axis=1)
     Dataframe = Dataframe.drop(['Email address'], axis=1)

@@ -122,3 +122,4 @@ if __name__ == '__main__':
     displayData(name, mail, phone, method, payment, address, amount)
     mailSend = mailAuth(name, mail, phone, method, payment, address, amount)
     print(mailSend)
+
