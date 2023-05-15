@@ -118,11 +118,7 @@ Lời đầu tiên, IOPM xin được gửi lời cảm ơn chân thành nhất 
 
 
 if __name__ == '__main__':
-    Dataframe = importData()
-    #display names
-    print(Dataframe['Họ và Tên của bạn'])
-    id = int(input('Chọn tên: '))
-    name, mail, phone, method, payment, address, amount = getData(Dataframe, id)
+    name, mail, phone, method, payment, address, amount = manualData()
     displayData(name, mail, phone, method, payment, address, amount)
     mailSend = mailAuth(name, mail, phone, method, payment, address, amount)
     print(mailSend)
