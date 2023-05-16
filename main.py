@@ -116,13 +116,28 @@ Lời đầu tiên, IOPM xin được gửi lời cảm ơn chân thành nhất 
     else:
         return mailShip
 
-
-if __name__ == '__main__':
+def autoMail():
     Dataframe = importData()
-    #display names
     print(Dataframe['Họ và Tên của bạn'])
     id = int(input('Chọn tên: '))
     name, mail, phone, method, payment, address, amount = getData(Dataframe, id)
     displayData(name, mail, phone, method, payment, address, amount)
     mailSend = mailAuth(name, mail, phone, method, payment, address, amount)
     print(mailSend)
+
+
+def manualMail():
+    name, mail, phone, method, payment, address, amount = manualData()
+    displayData(name, mail, phone, method, payment, address, amount)
+    mailSend = mailAuth(name, mail, phone, method, payment, address, amount)
+    print(mailSend)
+
+    
+if __name__ == '__main__':
+    cur = int(input('1: Auto .CSV | 2: Manual: | 3: Exit: '))
+    while cur != 3:
+        if cur == 1:
+            autoMail()
+        else:
+            manualMail()
+        cur = int(input('1: Auto .CSV | 2: Manual: | 3: Exit: '))
