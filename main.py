@@ -9,8 +9,10 @@ def importData():
     Dataframe = Dataframe.drop(Dataframe.columns[9], axis=1).drop(Dataframe.columns[10], axis=1).drop(
         Dataframe.columns[11], axis=1).drop(Dataframe.columns[12], axis=1).drop(Dataframe.columns[13], axis=1)
     cols = [
-        'Hãy nêu số lượng tạp chí bạn muốn đặt? (Lưu ý: Tiền sách chưa bao gồm phí ship cho các khách hàng nhận sách ngoài Trường THPT chuyên Trần Đại Nghĩa)',
-        'Hãy nêu số lượng tạp chí bạn muốn đặt? (Lưu ý: Tiền sách chưa bao gồm phí ship cho các khách hàng nhận sách ngoài Trường THPT chuyên Trần Đại Nghĩa).1']
+        '''Hãy nêu số lượng tạp chí bạn muốn đặt? (Lưu ý: Tiền sách chưa bao gồm phí ship cho các khách hàng nhận sách ngoài Trường THPT chuyên Trần Đại Nghĩa)
+*Nếu số lượng sách quá 5 quyển, hãy liên hệ với Minh Trí''',
+        '''Hãy nêu số lượng tạp chí bạn muốn đặt? (Lưu ý: Tiền sách chưa bao gồm phí ship cho các khách hàng nhận sách ngoài Trường THPT chuyên Trần Đại Nghĩa)
+*Nếu số lượng sách quá 5 quyển, hãy liên hệ với Minh Trí.1''']
     Dataframe['Hãy nêu số lượng tạp chí bạn muốn đặt?'] = (
             Dataframe[cols[0]].astype(str) + Dataframe[cols[1]].astype(str)).str.replace('nan', '')
     Dataframe = Dataframe.drop(cols, axis=1)
