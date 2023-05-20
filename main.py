@@ -1,4 +1,5 @@
 import pandas as pd
+import pyperclip
 
 
 def importData():
@@ -134,6 +135,7 @@ def autoMail():
     displayData(name, mail, phone, method, payment, address, amount)
     mailSend = mailAuth(name, mail, phone, method, payment, address, amount)
     print(mailSend)
+    pyperclip.copy(mailSend)
 
 
 def manualMail():
@@ -141,6 +143,7 @@ def manualMail():
     displayData(name, mail, phone, method, payment, address, amount)
     mailSend = mailAuth(name, mail, phone, method, payment, address, amount)
     print(mailSend)
+    pyperclip.copy(mailSend)
 
 
 if __name__ == '__main__':
