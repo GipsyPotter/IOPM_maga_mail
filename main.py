@@ -75,32 +75,27 @@ def mailAuth(name, mail, phone, method, payment, address, amount):
         money = '240,000 VND'
     elif amount == 'Combo 5 quyển:':
         money = '300,000 VND'
-    mailDirectCash = f'''
-IOPM chào bạn,
+    mailDirectCash = f'''IOPM chào bạn,
 Lời đầu tiên, IOPM xin được gửi lời cảm ơn chân thành nhất đến bạn khi đã quan tâm, tin tưởng, và đặt mua tạp chí của chúng mình. IOPM xin thông báo đơn hàng của bạn đã được xác nhận và hiện tại đang trong quá trình xử lý (chúng mình sẽ cố gắng gởi ẩn phẩm sớm nhất có thể cho bạn nhé). 
 
 - Tên người nhận: {name}
 - Số điện thoại: {phone}
 - Số lượng: {amount}
 - Thanh toán trực tiếp: {money}
-- Thời gian nhận hàng dự kiến: Từ 22/5/2023
+- Thời gian nhận hàng dự kiến: Từ 1/6/2023
 - Điểm nhận hàng: {method}
-
-        '''
-    mailDirectBank = f'''
-IOPM chào bạn,
+'''
+    mailDirectBank = f'''IOPM chào bạn,
 Lời đầu tiên, IOPM xin được gửi lời cảm ơn chân thành nhất đến bạn khi đã quan tâm, tin tưởng, và đặt mua tạp chí của chúng mình. IOPM xin thông báo đơn hàng của bạn đã được xác nhận và hiện tại đang trong quá trình xử lý (chúng mình sẽ cố gắng gởi ẩn phẩm sớm nhất có thể cho bạn nhé). 
 
 - Tên người nhận: {name}
 - Số điện thoại: {phone}
 - Số lượng: {amount}
 - Thanh toán: Đã chuyển khoản
-- Thời gian nhận hàng dự kiến: Từ 22/5/2023
+- Thời gian nhận hàng dự kiến: Từ 1/6/2023
 - Điểm nhận hàng: {method}
-
-        '''
-    mailShip = f'''
-IOPM chào bạn,
+'''
+    mailShip = f'''IOPM chào bạn,
 Lời đầu tiên, IOPM xin được gửi lời cảm ơn chân thành nhất đến bạn khi đã quan tâm, tin tưởng, và đặt mua tạp chí của chúng mình. IOPM xin thông báo đơn hàng của bạn đã được xác nhận và hiện tại đang trong quá trình xử lý (chúng mình sẽ cố gắng gởi ẩn phẩm sớm nhất có thể cho bạn nhé). 
 
 - Tên người nhận: {name}
@@ -108,9 +103,8 @@ Lời đầu tiên, IOPM xin được gửi lời cảm ơn chân thành nhất 
 - Địa chỉ: {address}
 - Số lượng: {amount}
 - Thanh toán: Đã chuyển khoản
-- Thời gian nhận hàng dự kiến: Từ 22/5/2022
-
-        '''
+- Thời gian nhận hàng dự kiến: Từ 1/6/2022
+'''
     if method == 'Nhận tại điểm phát hành(TpHCM)' or method == 'Nhận tại trường THPT Chuyên Trần Đại Nghĩa':
         if payment == 'Trực tiếp(tiền mặt): Tại trường THPT Chuyên Trần Đại Nghĩa hoặc Điểm phát hành':
             return mailDirectCash
@@ -136,7 +130,15 @@ def autoMail():
     mailSend = mailAuth(name, mail, phone, method, payment, address, amount)
     print(mailSend)
     pyperclip.copy(mailSend)
-
+def autoMail2(email):
+    Dataframe = importData()
+    mailAddress = email
+    id = getIDfromEmail(Dataframe, mailAddress)
+    name, mail, phone, method, payment, address, amount = getData(Dataframe, id)
+    displayData(name, mail, phone, method, payment, address, amount)
+    mailSend = mailAuth(name, mail, phone, method, payment, address, amount)
+    print(mailSend)
+    pyperclip.copy(mailSend)
 
 def manualMail():
     name, mail, phone, method, payment, address, amount = manualData()
@@ -147,10 +149,13 @@ def manualMail():
 
 
 if __name__ == '__main__':
-    cur = int(input('1: Auto .CSV | 2: Manual: | 3: Exit: '))
+    cur = input('1: Auto .CSV | 2: Manual: | 3: Exit: ')
     while cur != 3:
-        if cur == 1:
+        # check is email
+        if '@' in cur:
+            autoMail2(cur)
+        elif cur == '1':
             autoMail()
-        else:
+        elif cur == '2':
             manualMail()
-        cur = int(input('1: Auto .CSV | 2: Manual: | 3: Exit: '))
+        cur = input('1: Auto .CSV | 2: Manual: | 3: Exit: ')
